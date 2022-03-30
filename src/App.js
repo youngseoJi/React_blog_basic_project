@@ -11,7 +11,10 @@ function App() {
     "온라인 코딩 강의 추천",
     "개발 블로그 추천",
   ]);
-  let [up, setUp] = useState(0);
+  let [like, setLike] = useState(0);
+
+  let [modal, setModal] = useState(false);
+
   function blogNames() {
     // state값 원본을 그대로 쓰지않고, 깊은 복사를 해서 값을 변경해야한다.
     let newArray = [...blogName];
@@ -19,37 +22,51 @@ function App() {
     setBlogName(newArray.sort());
   }
   return (
-    <div>
+    <>
       <div className="black-nav">
         <div>블로그</div>
       </div>
-      <div className="list">
-        <h3>
-          {blogName[0]}
-          <span
-            onClick={() => {
-              setUp(up + 1);
-            }}
-          >
-            👍
-          </span>
-          {up}
-        </h3>
-        <p>3월 02일 발행</p>
-        <hr />
-      </div>
-      <div className="list">
-        <h3> {blogName[1]} </h3>
-        <p>3월 12일 발행</p>
-        <hr />
-      </div>
-      <div className="list">
-        <h3> {blogName[2]} </h3>
-        <p>3월 22일 발행</p>
-        <hr />
-      </div>
       <button onClick={blogNames}>버튼</button>
-    </div>
+      {/* 반복되는 데이터는 map을 사용하여 반복하며, 반복되는 모든 데이터의 개수만큼 반복된다.*/}
+      {blogName.map((el) => {
+        return (
+          <div className="list">
+            <h3>
+              {el}
+              <span
+                onClick={() => {
+                  setLike(like + 1}}
+              >
+                👍
+              </span>
+              {like}
+       </h3>
+            <p>3월 02일 발행</p>
+            <hr />
+          </div>
+        );
+      })}
+
+      <button
+        onClick={() => {
+          setModal(!modal);
+        }}
+      >
+        on/off버튼
+      </button>
+      {modal ? <Modal /> : null}
+    </>
+  );
+}
+
+function Modal() {
+  return (
+    <>
+      <div className="modal">
+        <h2>알림창</h2>
+        <p>까꿍! on 상태입니다!</p>
+      </div>
+    </>
   );
 }
 

@@ -1,3 +1,7 @@
+* {
+  padding: 0px;
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
@@ -38,4 +42,22 @@
 .list {
   margin-top: 30px;
   margin-left: 10px;
+}
+
+button {
+  display: flex;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin: auto;
+}
+.modal {
+  position: relative;
+  top: 10px;
+  background-color: pink;
+  width: 30%;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
 }
