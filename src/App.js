@@ -35,12 +35,32 @@ function App() {
               {el}
               <span
                 onClick={() => {
-                  setLike(like + 1}}
+                  setLike(like + 1);
+                }}
               >
                 👍
               </span>
               {like}
-       </h3>
+            </h3>
+            <p>3월 02일 발행</p>
+            <hr />
+          </div>
+        );
+      })}
+      {blogName.map((el) => {
+        return (
+          <div className="list">
+            <h3>
+              {el}
+              <span
+                onClick={() => {
+                  setLike(like + 1);
+                }}
+              >
+                👍
+              </span>
+              {like}
+            </h3>
             <p>3월 02일 발행</p>
             <hr />
           </div>
