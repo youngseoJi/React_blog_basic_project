@@ -17,13 +17,26 @@ function App() {
   // 2. state에 따라서 UI가 수정되게 만들면 된다.
   let [modal, setModal] = useState(false);
   let [blogNameIdx, setBlogNameIdx] = useState(0);
+  let [inputName, setInputName] = useState("");
 
+  // 블로그 목록 추가 함수
+  function blogNameChange() {
+    let blogNames = [...blogName];
+    blogNames.unshift(inputName);
+    setBlogName(blogNames);
+  }
   // state값 원본을 그대로 쓰지않고, 깊은 복사를 해서 값을 변경해야한다.
   // 버튼을 누르면 글자 순으로 변경해보기
   function blogNames() {
     let newArray = [...blogName];
     setBlogName(newArray.sort());
   }
+
+  // function blogNameChange() {
+  //   let blog = [...blogName];
+  //   blog[i]++
+  //   setBlogName(blog);
+  // }
   return (
     <>
       <div className="black-nav">
@@ -56,7 +69,19 @@ function App() {
           </div>
         );
       })}
-      <div className="btn">
+
+      {/* input 다루기 => 입력한 데이터를 변수에 저장하는 방법 
+      1. 저장공간 상태변수 생성 useState
+      2. onChange()는 사용자가 input창에 입력하는 데이터를 원하는 데로 변경시킨다.
+      e.target.value => 사용자가 입력한 값을 갖고온다. 
+      3. 상태변경함수로 사용자가 입력하는 값으로 inputName 상태변수값을 변경해준다.*/}
+      <div className="input-name">
+        <input
+          onChange={(e) => {
+            setInputName(e.target.value);
+          }}
+        />
+        <button onClick={blogNameChange}>블로그 제목 저장</button>
         <button onClick={blogNames}>가나다 순서정렬</button>
         <button
           onClick={() => {
@@ -66,6 +91,7 @@ function App() {
           on/off버튼
         </button>
       </div>
+
       {modal ? <Modal blogName={blogName} blogNameIdx={blogNameIdx} /> : null}
     </>
   );
