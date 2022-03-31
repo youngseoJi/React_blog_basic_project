@@ -11,7 +11,7 @@ function App() {
     "온라인 코딩 강의 추천",
     "개발 블로그 추천",
   ]);
-  let [like, setLike] = useState(0);
+  let [like, setLike] = useState([0, 0, 0]);
 
   let [modal, setModal] = useState(false);
 
@@ -27,39 +27,23 @@ function App() {
         <div>블로그</div>
       </div>
       <button onClick={blogNames}>버튼</button>
+
       {/* 반복되는 데이터는 map을 사용하여 반복하며, 반복되는 모든 데이터의 개수만큼 반복된다.*/}
-      {blogName.map((el) => {
+      {blogName.map((el, i) => {
         return (
-          <div className="list">
+          <div className="list" key={i}>
             <h3>
               {el}
               <span
                 onClick={() => {
-                  setLike(like + 1);
+                  let copy = [...like];
+                  copy[i]++;
+                  setLike(copy);
                 }}
               >
                 👍
               </span>
-              {like}
-            </h3>
-            <p>3월 02일 발행</p>
-            <hr />
-          </div>
-        );
-      })}
-      {blogName.map((el) => {
-        return (
-          <div className="list">
-            <h3>
-              {el}
-              <span
-                onClick={() => {
-                  setLike(like + 1);
-                }}
-              >
-                👍
-              </span>
-              {like}
+              {like[i]}
             </h3>
             <p>3월 02일 발행</p>
             <hr />
