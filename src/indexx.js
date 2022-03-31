@@ -1,5 +1,3 @@
-// eslint - disable;
-
 import React, { useState } from "react";
 import "./App.css";
 
@@ -16,7 +14,6 @@ function App() {
   // UI 만드는 법) 1. UI와 관련된 중요 정보들을 state로 저장해놓고
   // 2. state에 따라서 UI가 수정되게 만들면 된다.
   let [modal, setModal] = useState(false);
-  let [blogNameIdx, setBlogNameIdx] = useState(0);
 
   // state값 원본을 그대로 쓰지않고, 깊은 복사를 해서 값을 변경해야한다.
   // 버튼을 누르면 글자 순으로 변경해보기
@@ -29,22 +26,17 @@ function App() {
       <div className="black-nav">
         <div>블로그</div>
       </div>
+      <button onClick={blogNames}>버튼</button>
 
       {/* 반복되는 데이터는 map을 사용하여 반복하며, 반복되는 모든 데이터의 개수만큼 반복된다.*/}
-      {blogName.map((blogName, i) => {
+      {blogName.map((el, i) => {
         return (
           <div className="list" key={i}>
-            <h3
-              onClick={() => {
-                setBlogNameIdx(i);
-              }}
-            >
-              {blogName}
+            <h3>
+              {el}
               <span
                 onClick={() => {
-                  let likeCnt = [...like];
-                  likeCnt[i]++;
-                  setLike(likeCnt);
+                  setLike(like);
                 }}
               >
                 👍
@@ -56,17 +48,15 @@ function App() {
           </div>
         );
       })}
-      <div className="btn">
-        <button onClick={blogNames}>가나다 순서정렬</button>
-        <button
-          onClick={() => {
-            setModal(!modal);
-          }}
-        >
-          on/off버튼
-        </button>
-      </div>
-      {modal ? <Modal blogName={blogName} blogNameIdx={blogNameIdx} /> : null}
+
+      <button
+        onClick={() => {
+          setModal(!modal);
+        }}
+      >
+        on/off버튼
+      </button>
+      {modal ? <Modal blogName={blogName} /> : null}
     </>
   );
 }
@@ -82,11 +72,9 @@ function Modal(props) {
     <>
       <div className="modal">
         {/* 각 글의 제목을 누르면 해당하는 창이 뜨게 설정하기 */}
-        <h2> 제목 : {props.blogName[props.blogNameIdx]}</h2>
+        <h2> 제목 : {props.blogName[0]}</h2>
         <p>까꿍! on 상태입니다!</p>
       </div>
     </>
   );
 }
-
-export default App;
