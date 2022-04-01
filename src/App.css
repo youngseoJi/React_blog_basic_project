@@ -28,22 +28,26 @@
   color: white;
   padding: 20px;
   font-size: 20px;
+  font-weight: 20px;
 }
 
 .list {
   margin-top: 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.input-name {
+  margin-top: 30px;
   margin-left: 10px;
 }
-.input-name {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
+
 .input-name input {
+  display: flex;
   margin: auto;
   width: 50%;
-  padding: 20px;
+  padding: 10px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid grey;
@@ -71,12 +75,11 @@ button:active {
   top: 2px;
 }
 .modal {
-  position: relative;
-  top: 30px;
-  background-color: pink;
-  width: 70%;
-  margin: auto;
+  margin-top: 20px;
   padding: 30px;
+  background-color: pink;
+  width: 50%;
+  margin: auto;
   text-align: center;
   border-radius: 10px;
 }
